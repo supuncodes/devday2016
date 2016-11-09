@@ -4,14 +4,19 @@ rxHelpers.initialize(Rx);
 
 var express = require('express')
 var app = express()
+var bodyParser = require('body-parser')
+app.use(bodyParser.json())
 
 app.use(express.static('public'))
 app.use(express.static('files'))
 app.use('/data', express.static('public'))
 
-app.get('/', function (req, res) {
+
+app.post('/getAccountsOfYoungCustomers', function (req, res) {
   
-    var arr = ["a","b","c","d","e","f"];
+    //var arr = ["a","b","c","d","e","f"]; //these are some valid IDs
+    console.log(req.rawBody);
+    var arr = req.body.customerIds; //use this format when posting Data: {customerIds: ["a", "b"]}
     var responseArray = [];
 
     Rx.Observable.fromArray(arr)

@@ -19,7 +19,7 @@ function initialize (Rx){
                             body = JSON.parse(body);
                         obs.onNext(body);    
                     } else 
-                        obs.onNext(error);
+                        obs.onNext({});
 
                     isDownloading = false;
                     next();
